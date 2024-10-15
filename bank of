@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+          background-image: url('https://i.ibb.co/BVVG3G7/7ace571083d4.webp'); /* Replace this with the correct URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 50px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #00508b;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #004080;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h3 {
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a:hover {
+            color: #b0c4de;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .main-content h2 {
+            text-align: center;
+        }
+
+      
+
+        /* Login Form */
+        .login-container,
+        .funds-container,
+        .settings-container {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form,
+        .funds-form,
+        .settings-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            position: relative;
+        }
+
+        .login-form input,
+        .settings-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00508b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .funds-form {
+            text-align: center;
+        }
+
+        .funds-form h2 {
+            color: blue;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #555;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #662D91;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Settings Form */
+        .settings-form {
+            text-align: center;
+        }
+
+        .settings-form h2 {
+            color: blue;
+        }
+
+        .settings-form ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .settings-form ul li {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Manugunuru Bank</h1>
+        <p>Your trusted financial partner</p>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Accounts</a>
+        <a href="#">Services</a>
+        <a href="#">Loans</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Login</a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#" onclick="showLoginForm()">View Account</a></li>
+                <li><a href="#" onclick="showFunds()">Transfer Funds</a></li>
+                <li><a href="#" onclick="applyForLoan()">Apply for Loan</a></li>
+                <li><a href="#" onclick="viewStatement()">View Statement</a></li>
+                <li><a href="#" onclick="showSettings()">Account Settings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2>Welcome to Global Bank</h2>
+            <p>Our services are designed to provide you with easy and secure financial management.</p>
+
+    <!-- Login Form (Initially Hidden) -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-form">
+            <span class="close-btn" onclick="closeLoginForm()">×</span>
+            <h3>Login</h3>
+            <input type="text" id="mobileNumber" placeholder="Enter 10-digit Mobile Number" required>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <!-- Funds Transfer Page (Initially Hidden) -->
+    <div class="funds-container" id="fundsContainer">
+        <div class="funds-form">
+            <span class="close-btn" onclick="closeFundsForm()">×</span>
+            <h2>Your funds are 1000 rupees</h2>
+        </div>
+    </div>
+
+    <!-- Settings Page (Initially Hidden) -->
+    <div class="settings-container" id="settingsContainer">
+        <div class="settings-form">
+            <span class="close-btn" onclick="closeSettingsForm()">×</span>
+            <h2>Vivo Y75 Mobile Settings</h2>
+            <ul>
+                <li>Wi-Fi</li>
+                <li>Bluetooth</li>
+                <li>Display & Brightness</li>
+                <li>Sound & Vibration</li>
+                <li>Security & Privacy</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Global Bank. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a> |
+            <a href="#">Help</a>
+        </p>
+    </div>
+
+    <script>
+        // Function to show the login form when "View Account" is clicked
+        function showLoginForm() {
+            document.getElementById('loginContainer').style.display = 'flex';
+        }
+
+        // Function to close the login form when "×" is clicked
+        function closeLoginForm() {
+            document.getElementById('loginContainer').style.display = 'none';
+        }
+
+        // Function to perform login validation
+        function login() {
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            const password = document.getElementById('password').value;
+
+            // Validate mobile number (must be 10 digits) and password ("joseph5566")
+            if (mobileNumber.length === 10 && password === "joseph5566") {
+                // Redirect to YouTube on successful login
+                window.location.href = "https://www.youtube.com";
+            } else {
+                alert("Invalid mobile number or password.");
+            }
+        }
+
+        // Show Transfer Funds page
+        function showFunds() {
+            document.getElementById('fundsContainer').style.display = 'flex';
+        }
+
+        // Close Transfer Funds page
+        function closeFundsForm() {
+            document.getElementById('fundsContainer').style.display = 'none';
+        }
+
+        // Apply for Loan (redirect to Google)
+        function applyForLoan() {
+            window.location.href = "https://www.bankofbaroda.in/personal-banking/loans/personal-loan/baroda-digital-pre-approved-personal-loan";
+        }
+
+        // View Statement (redirect to Chrome)
+        function viewStatement() {
+            window.location.href = "https://www.chrome.com";
+        }
+
+        // Show Account Settings page
+        function showSettings() {
+            document.getElementById('settingsContainer').style.display = 'flex';
+        }
+
+        // Close Account Settings page
+        function closeSettingsForm() {
+            document.getElementById('settingsContainer').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
+    
